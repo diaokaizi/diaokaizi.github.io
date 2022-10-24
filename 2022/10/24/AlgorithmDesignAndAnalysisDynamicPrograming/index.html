@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="计算机算法设计与分析作业(动态规划)1 Money RobbingA robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that">
+  <meta name="description" content="计算机算法设计与分析作业(动态规划) 1 Money RobbingA robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is tha">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AlgorithmDesignAndAnalysisDynamicPrograming">
 <meta property="og:url" content="http://example.com/2022/10/24/AlgorithmDesignAndAnalysisDynamicPrograming/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="计算机算法设计与分析作业(动态规划)1 Money RobbingA robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that">
+<meta property="og:description" content="计算机算法设计与分析作业(动态规划) 1 Money RobbingA robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is tha">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113238942.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113301773.png">
 <meta property="article:published_time" content="2022-10-24T11:14:15.000Z">
-<meta property="article:modified_time" content="2022-10-24T11:14:56.476Z">
+<meta property="article:modified_time" content="2022-10-24T11:49:24.099Z">
 <meta property="article:author" content="XuKai">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png">
@@ -80,7 +80,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -178,7 +290,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-10-24 19:14:15 / 修改时间：19:14:56" itemprop="dateCreated datePublished" datetime="2022-10-24T19:14:15+08:00">2022-10-24</time>
+              <time title="创建时间：2022-10-24 19:14:15 / 修改时间：19:49:24" itemprop="dateCreated datePublished" datetime="2022-10-24T19:14:15+08:00">2022-10-24</time>
             </span>
 
           
@@ -192,7 +304,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="计算机算法设计与分析作业-动态规划"><a href="#计算机算法设计与分析作业-动态规划" class="headerlink" title="计算机算法设计与分析作业(动态规划)"></a>计算机算法设计与分析作业(动态规划)</h1><h2 id="1-Money-Robbing"><a href="#1-Money-Robbing" class="headerlink" title="1 Money Robbing"></a>1 Money Robbing</h2><p>A robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. </p>
+        <p>计算机算法设计与分析作业(动态规划)</p>
+<h2 id="1-Money-Robbing"><a href="#1-Money-Robbing" class="headerlink" title="1 Money Robbing"></a>1 Money Robbing</h2><p>A robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. </p>
 <ol>
 <li>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. </li>
 <li>What if all houses are arranged in a circle?</li>
@@ -397,7 +510,10 @@
     <a href="/2022/10/07/SpinLocks/" rel="prev" title="SpinLocks">
       <i class="fa fa-chevron-left"></i> SpinLocks
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/24/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -456,7 +572,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E4%BD%9C%E4%B8%9A-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">计算机算法设计与分析作业(动态规划)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Money-Robbing"><span class="nav-number">1.1.</span> <span class="nav-text">1 Money Robbing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-%E6%88%BF%E5%B1%8B%E5%9B%B4%E6%88%90%E4%B8%80%E5%9C%88"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">e)房屋围成一圈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Ugly-Number"><span class="nav-number">1.2.</span> <span class="nav-text">2 Ugly Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-1"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-1"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-1"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-1"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Largest-Divisible-Subset"><span class="nav-number">1.3.</span> <span class="nav-text">3 Largest Divisible Subset</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-2"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-2"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-2"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-2"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Target-Sum"><span class="nav-number">1.4.</span> <span class="nav-text">4 Target Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><span class="nav-number">1.5.</span> <span class="nav-text">5 Best Time to Buy and Sell Stock with Cooldown</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Edit-distance"><span class="nav-number">1.6.</span> <span class="nav-text">6 Edit distance</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Money-Robbing"><span class="nav-number">1.</span> <span class="nav-text">1 Money Robbing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">1.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="nav-number">1.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-%E6%88%BF%E5%B1%8B%E5%9B%B4%E6%88%90%E4%B8%80%E5%9C%88"><span class="nav-number">1.0.5.</span> <span class="nav-text">e)房屋围成一圈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Ugly-Number"><span class="nav-number">2.</span> <span class="nav-text">2 Ugly Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-1"><span class="nav-number">2.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Largest-Divisible-Subset"><span class="nav-number">3.</span> <span class="nav-text">3 Largest Divisible Subset</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-2"><span class="nav-number">3.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-2"><span class="nav-number">3.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Target-Sum"><span class="nav-number">4.</span> <span class="nav-text">4 Target Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><span class="nav-number">5.</span> <span class="nav-text">5 Best Time to Buy and Sell Stock with Cooldown</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Edit-distance"><span class="nav-number">6.</span> <span class="nav-text">6 Edit distance</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -557,6 +673,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
