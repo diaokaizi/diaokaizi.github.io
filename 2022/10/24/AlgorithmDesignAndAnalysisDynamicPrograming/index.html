@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="计算机算法设计与分析作业(动态规划)1 Money RobbingA robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlgorithmDesignAndAnalysisDynamicPrograming">
+<meta property="og:url" content="http://example.com/2022/10/24/AlgorithmDesignAndAnalysisDynamicPrograming/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="计算机算法设计与分析作业(动态规划)1 Money RobbingA robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113238942.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113301773.png">
+<meta property="article:published_time" content="2022-10-24T11:14:15.000Z">
+<meta property="article:modified_time" content="2022-10-24T11:14:56.476Z">
+<meta property="article:author" content="XuKai">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png">
+
+<link rel="canonical" href="http://example.com/2022/10/24/AlgorithmDesignAndAnalysisDynamicPrograming/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AlgorithmDesignAndAnalysisDynamicPrograming | Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/24/AlgorithmDesignAndAnalysisDynamicPrograming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XuKai">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AlgorithmDesignAndAnalysisDynamicPrograming
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-24 19:14:15 / 修改时间：19:14:56" itemprop="dateCreated datePublished" datetime="2022-10-24T19:14:15+08:00">2022-10-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="计算机算法设计与分析作业-动态规划"><a href="#计算机算法设计与分析作业-动态规划" class="headerlink" title="计算机算法设计与分析作业(动态规划)"></a>计算机算法设计与分析作业(动态规划)</h1><h2 id="1-Money-Robbing"><a href="#1-Money-Robbing" class="headerlink" title="1 Money Robbing"></a>1 Money Robbing</h2><p>A robber is planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were broken into on the same night. </p>
+<ol>
+<li>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police. </li>
+<li>What if all houses are arranged in a circle?</li>
+</ol>
+<h4 id="a-算法与伪代码"><a href="#a-算法与伪代码" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><p>通过动态规划依次到第<code>i</code>家时偷与不偷所能获得的最大金额，如果偷，则最大金额为不偷上一家的最大金额加上这一家的钱，如果不偷，则最大金额为上一家偷与不偷的最大金额。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png" alt="image-20221024113211346"></p>
+<h4 id="b-最优子结构与状态转移方程"><a href="#b-最优子结构与状态转移方程" class="headerlink" title="b)最优子结构与状态转移方程"></a>b)最优子结构与状态转移方程</h4><p>假定从左边开始偷起，定义<code>dp[i][0]</code>表示在不触发警报的情况下偷取第<code>i</code>家后，最大能偷到的总金额，<code>dp[i][1]</code>表示不偷第<code>i</code>家的最大金额数。初始值：偷第一家<code>dp[i][0] = money[i]</code>，不偷第一家则<code>dp[i][1] = 0</code></p>
+<p>状态转移方程如下：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i][0] = \left\{
+        \begin{array}
+            & money[0] && i = 0 \\
+            dp[i-1][1] + money[i] && i > 0
+        \end{array}
+        \right.
+    \end{eqnarray}</script><script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i][1] = \left\{
+        \begin{array}
+            & 0 && i = 0 \\
+            max(dp[i-1][0],dp[i-1][1]) && i > 0
+        \end{array}
+        \right.
+    \end{eqnarray}</script><h4 id="c-证明正确性"><a href="#c-证明正确性" class="headerlink" title="c)证明正确性"></a>c)证明正确性</h4><ol>
+<li><p>假设偷第<code>i</code>家，那么为了不触发警报，则前一家一定不能偷，所以<code>dp[i][0] = dp[i - 1][1] + money[i]</code>。</p>
+</li>
+<li><p>假设不偷第<code>i</code>家，那么<code>dp[i][1]</code>为前一家偷与不偷两种情况的最大值，所以</p>
+<p><code>dp[i][1] = max(dp[i - 1][0], dp[i - 1][1])</code>。</p>
+</li>
+</ol>
+<p>假设一共有<code>n</code>家，那么最后能偷到的最大总金额为<code>max(dp[i][0],dp[i][1])</code></p>
+<h4 id="d-时间复杂度"><a href="#d-时间复杂度" class="headerlink" title="d)时间复杂度"></a>d)时间复杂度</h4><p>经过一次遍历即可得到结果，时间复杂度为<code>O(n)</code></p>
+<h4 id="e-房屋围成一圈"><a href="#e-房屋围成一圈" class="headerlink" title="e)房屋围成一圈"></a>e)房屋围成一圈</h4><p>如果围成一圈，那么需要额外判断第一家和最后一家，第一家和最后一家不能同时偷。分两种情况讨论：</p>
+<ol>
+<li><p>假设不偷第一家，那么问题可以转化为在子区间[2,n]求最大金额。</p>
+</li>
+<li><p>假设不偷最后一家，那么问题可以转化为在子区间[1,n-1]求最大金额。</p>
+</li>
+</ol>
+<p>分两种情况进行计算，最后取最大的结果。</p>
+<h2 id="2-Ugly-Number"><a href="#2-Ugly-Number" class="headerlink" title="2 Ugly Number"></a>2 Ugly Number</h2><p>An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5. Given an integer n, return the 𝒏 𝒕𝒉 ugly number.</p>
+<h4 id="a-算法与伪代码-1"><a href="#a-算法与伪代码-1" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><p>定义三个下标，分别表示质因数2、3和5的下标，该下标指向的数乘上对应的质因数就是下一个可能的丑数，计算三个可能的丑数，选择其中最小的就是下一个最小的丑数，并且对应的下标加一。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113238942.png" alt="image-20221024113238942"></p>
+<h4 id="b-最优子结构与状态转移方程-1"><a href="#b-最优子结构与状态转移方程-1" class="headerlink" title="b)最优子结构与状态转移方程"></a>b)最优子结构与状态转移方程</h4><p>定义<code>dp[i]</code>表示第<code>i</code>个丑数，<code>i2,i3,i5</code>分别表示该下标的数乘对应的质因数是下一个可能的丑数。<code>dp[0]</code>初始值为1</p>
+<p>状态转移方程如下：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i] = \left\{
+        \begin{array}
+            & 1 && i = 0 \\
+            min(dp[i2]×2,dp[i3]×3,dp[i5]×5) && i > 0
+        \end{array}
+        \right.
+    \end{eqnarray}</script><h4 id="c-证明正确性-1"><a href="#c-证明正确性-1" class="headerlink" title="c)证明正确性"></a>c)证明正确性</h4><p>在计算<code>dp[i]</code>时，<code>dp[i2] × 2 &gt; dp[i - 1],dp[i3] × 3 &gt; dp[i - 1],dp[i5] × 5 &gt; dp[i - 1]</code>且<code>dp[i2 - 1] × 2 &lt;= dp[i - 1],dp[i3 - 1] × 3 &lt;= dp[i - 1],dp[i5 - 1] × 5 &lt;= dp[i - 1]</code>,所以如果选择<code>min(dp[i2] × 2, dp[i3] × 3, dp[i5] × 5)</code>那么该值一定是大于<code>dp[i -1 ]</code>的最小的丑数。</p>
+<h4 id="d-时间复杂度-1"><a href="#d-时间复杂度-1" class="headerlink" title="d)时间复杂度"></a>d)时间复杂度</h4><p>计算每一个丑数都需要花费常数的时间复杂度，所以计算第<code>n</code>个丑数的时间复杂度为<code>O(n)</code></p>
+<h2 id="3-Largest-Divisible-Subset"><a href="#3-Largest-Divisible-Subset" class="headerlink" title="3 Largest Divisible Subset"></a>3 Largest Divisible Subset</h2><p>Given a set of distinct positive integers, find the largest subset such that every pair (𝑆𝑖 , 𝑆𝑗 ) of elements in this subset satisfies: 𝑆𝑖%𝑆𝑗 = 0 or 𝑆𝑗%𝑆𝑖 = 0. Please return the largest size of the subset. </p>
+<p>Note: 𝑆𝑖%𝑆𝑗 = 0 means that 𝑆𝑖 is divisible by 𝑆𝑗</p>
+<h4 id="a-算法与伪代码-2"><a href="#a-算法与伪代码-2" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><p>由于选取的是子集，所以元素的顺序不影响结果，首先对元素从小到大进行排序，然后从左到右进行遍历。计算以当前元素作为子集中的最大元素，能够选取的最大子集大小是多少。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113301773.png" alt="image-20221024113301773"></p>
+<h4 id="b-最优子结构与状态转移方程-2"><a href="#b-最优子结构与状态转移方程-2" class="headerlink" title="b)最优子结构与状态转移方程"></a>b)最优子结构与状态转移方程</h4><p>定义<code>dp[i]</code>表示以<code>s[i]</code>为最大值的子集的大小，对于<code>s[i]</code>（i&gt;0），遍历所有元素<code>s[j]</code>,j ∈[0,i-1]，如果<code>s[i]%s[j]=0</code>说明<code>s[j]</code>能够添加到<code>s[i]</code>所在的子集中，计算这些可能的子集的最大值加一就是以<code>s[j]</code>为最大值的整除子集的大小。</p>
+<p>初始值<code>dp[0]=1</code>，如果前面的所有数都不能整除<code>s[i]</code>，说明<code>s[i]</code>需要自己创建一个新的子集，<code>dp[i]=1</code>。</p>
+<p>状态转移方程如下：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i] = \left\{
+        \begin{array}
+            & 1 && i = 0 \\
+            \max\limits_{j ∈[0,i-1]}(dp[i]) + 1 && i > 0& and & s[i]\%s[j]=0
+        \end{array}
+        \right.
+    \end{eqnarray}</script><h4 id="c-证明正确性-2"><a href="#c-证明正确性-2" class="headerlink" title="c)证明正确性"></a>c)证明正确性</h4><p>整除子集里面的所有数都满足<code>s[i]%s[j]=0</code> 或<code>s[j]%s[i]=0</code>那么可以推断出，集合中的每一个元素能够被集合中的比它小的元素整除。所以对于<code>i&gt;j</code>如果<code>s[i]%s[j]=0</code>，那么<code>s[i]</code>一定能够被当前<code>s[j]</code>所在整除子集的所有数整除，于是<code>s[i]</code>就可以作为这个整除子集的最大元素。</p>
+<p>由于最大整除子集不一定包含有整个列表中的最大值，所以需要对所有的整除子集进行遍历，取最大的大小。</p>
+<h4 id="d-时间复杂度-2"><a href="#d-时间复杂度-2" class="headerlink" title="d)时间复杂度"></a>d)时间复杂度</h4><p>排序的时间复杂度是O(logn)，计算<code>dp[i]</code>需要遍历之前的每一个比<code>s[i]</code>小的数，所以求dp数组的时间复杂度为O(n<sup>2</sup>)。</p>
+<h2 id="4-Target-Sum"><a href="#4-Target-Sum" class="headerlink" title="4 Target Sum"></a>4 Target Sum</h2><p>You are given an integer array nums and an integer target. You want to build an expression out of nums by adding one of the symbols ‘+’ and ‘-‘ before each integer in nums and then concatenate all the integers. </p>
+<p>For example, if nums = [2, 1], you can add a ‘+’ before 2 and a ‘-‘ before 1 and concatenate them to build the expression “+2-1”. Return the number of different expressions that you can build, which evaluates to target. </p>
+<p>Example: </p>
+<p>Input: nums = [1,1,1,1,1], target = 3 </p>
+<p>Output: 5 Explanation: </p>
+<p>There are 5 ways to assign symbols to make the sum of nums be target 3. </p>
+<p>-1 + 1 + 1 + 1 + 1 = 3 </p>
+<p>+1 - 1 + 1 + 1 + 1 = 3 </p>
+<p>+1 + 1 - 1 + 1 + 1 = 3 </p>
+<p>+1 + 1 + 1 - 1 + 1 = 3 </p>
+<p>+1 + 1 + 1 + 1 - 1 = 3</p>
+<p>定义<code>dp[i][j]</code>表示前<code>i</code>个数组成大小为<code>j</code>的方法个数。因此<code>j</code>的最大最小取值范围是<code>[-sum,sum]</code>，<code>sum</code>为所有<code>i</code>个数和。</p>
+<p>考虑第<code>i</code>个数是添加<code>+</code>号还是<code>-</code>号：</p>
+<p>如果添加<code>+</code>号，那么<code>dp[i][j] += dp[i-1][j-nums[i]]</code>，当然<code>j-nums[i]</code>需要判断是否越界。</p>
+<p>如果添加<code>-</code>号，那么<code>dp[i][j] += dp[i-1][j+nums[i]]</code>，当然<code>j+nums[i]</code>需要判断是否越界。</p>
+<p>初始值<code>dp[0][nums[0]]+=1</code>,<code>dp[0][-nums[0]]+=1</code></p>
+<p>状态转移方程：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i][j] = dp[i-1][j-nums[i]] + dp[i-1][j+nums[i]]
+\end{eqnarray}</script><h2 id="5-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><a href="#5-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown" class="headerlink" title="5 Best Time to Buy and Sell Stock with Cooldown"></a>5 Best Time to Buy and Sell Stock with Cooldown</h2><p>You are given an array prices where prices[𝑖] is the price of a given stock on the 𝑖 𝑡ℎ day. </p>
+<p>Find the maximum profit you can achieve. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times) with the following restrictions: </p>
+<p>After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day). </p>
+<p>Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again). </p>
+<p>Example: </p>
+<p>Input: prices = [1,2,3,0,2] </p>
+<p>Output: 3 Explanation: </p>
+<p>transactions = [buy, sell, cooldown, buy, sell]</p>
+<p>定义<code>dp[i][j]</code>,j ∈[0,2]:</p>
+<p><code>dp[i][0]</code>表示到第<code>i</code>天时手上持有股票，能获得的最大钱数。</p>
+<p><code>dp[i][1]</code>表示到第<code>i</code>天时手上不持有股票，且今天没有卖掉股票，能获得的最大钱数。</p>
+<p><code>dp[i][0]</code>表示到第<code>i</code>天时手上不持有股票，且是今天卖掉的，能获得的最大钱数。</p>
+<p>可推导出：</p>
+<p>第<code>i</code>天时手上持有股票的可能情况是：</p>
+<ol>
+<li>前一天持有股票，今天不做操作继续持有股票, 即<code>dp[i-1][0]</code>。</li>
+<li>在第<code>i</code>天买入股票，因为只能在不处于冷冻期的状态下购买股票，即前一天不能卖掉股票，即<code>dp[i-1][1] - prices[i]</code>。</li>
+</ol>
+<p><code>dp[i][0] = max(dp[i-1][0], dp[i-1][1] - prices[i])</code></p>
+<p>第<code>i</code>天时手上手上不持有股票，且今天没有卖掉股票的可能情况是：</p>
+<ol>
+<li>保持前一天的该状态, 即<code>dp[i-1][1]</code>。</li>
+<li>前一天卖掉了股票，今天处于冷冻期, 即<code>dp[i-1][2]</code>。</li>
+</ol>
+<p><code>dp[i][1] = max(dp[i-1][1], dp[i-1][2])</code></p>
+<p>第<code>i</code>天时手上不持有股票，且是今天卖掉的</p>
+<p><code>dp[i][2] = dp[i-1][0] + prices[i]</code></p>
+<p>初始值：</p>
+<p><code>dp[i][0] = - prices[0]</code></p>
+<p><code>dp[i][1] = 0</code></p>
+<p><code>dp[i][2] = 0</code></p>
+<p>综上，状态转移函数为：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i][0] = \left\{
+        \begin{array}
+            & -prices[0] && i = 0 \\
+            max(dp[i-1][0], dp[i-1][1] - prices[i]) && i > 0
+        \end{array}
+        \right.
+\end{eqnarray}</script><script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i][1] = \left\{
+        \begin{array}
+            & 0 && i = 0 \\
+            max(dp[i-1][1], dp[i-1][2]) && i > 0
+        \end{array}
+        \right.
+\end{eqnarray}</script><script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i][2] = \left\{
+        \begin{array}
+            & 0 && i = 0 \\
+            dp[i-1][0] + prices[i] && i > 0
+        \end{array}
+        \right.
+\end{eqnarray}</script><h2 id="6-Edit-distance"><a href="#6-Edit-distance" class="headerlink" title="6 Edit distance"></a>6 Edit distance</h2><p>Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2. </p>
+<p>You have the following three operations permitted on a word: </p>
+<p>Insert a character </p>
+<p>Delete a character </p>
+<p>Replace a character </p>
+<p>Example: </p>
+<p>Input: word1 = “horse”, word2 = “ros” </p>
+<p>Output: 3 Explanation: </p>
+<p>horse -&gt; rorse (replace ‘h’ with ‘r’) </p>
+<p>rorse -&gt; rose (remove ‘r’) </p>
+<p>rose -&gt; ros (remove ‘e’)</p>
+<p>定义<code>dp[i][j]</code>为<code>word1</code>的前<code>i</code>个字符和<code>word2</code>的前<code>j</code>个字符转化所需要的最小的操作。</p>
+<p>使用增加字符和删除字符操作：</p>
+<p>已知<code>dp[i-1][j]</code>，那么通过删除<code>word2</code>的第<code>j</code>个字符或者向<code>word1</code>的第<code>i</code>个位置添加<code>word2</code>的第<code>j</code>个字符能够得到，仅1步操作,即<code>dp[i][j] = dp[i-1][j] + 1</code>，同理<code>dp[i][j] = dp[i][j-1] + 1</code></p>
+<p>即<code>dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + 1</code></p>
+<p>使用修改字符操作：</p>
+<p>已知<code>dp[i-1][j-1]</code>，考虑两种情况：</p>
+<ol>
+<li>如果<code>word1[i]!=word2[j]</code>，那么把<code>word1[i]</code>修改<code>word2[j]</code>，或者把<code>word2[j]</code>修改<code>word1[i]</code>，需要一步操作<code>dp[i][j] = dp[i-1][j-1] + 1</code></li>
+<li>如果<code>word1[i]==word2[j]</code>，那么不需要操作，即<code>dp[i][j] = dp[i-1][j-1]</code></li>
+</ol>
+<p>由于<code>dp[i-1][j-1]&lt;=dp[i][j-1]&lt;=dp[i-1][j-1]+1</code>，那么<code>dp[i-1][j-1] &lt;= min(dp[i-1][j],dp[i][j-1]) + 1</code>，所以如果<code>word1[i]==word2[j]</code>，实际上不用考虑增删字符操作，直接选择<code>dp[i][j] = dp[i-1][j-1]</code>。</p>
+<p>假设<code>word1</code>的长度为<code>n</code>，<code>word2</code>的长度为<code>m</code>。</p>
+<p><code>dp</code>数组的大小为<code>(n + 1) × (m + 1)</code>。初始化：当<code>i=0</code>时，<code>w1</code>为空串，需要使用<code>j</code>次增删操作才能把空串转为为<code>word2[0-j]</code>，同理当<code>j=0</code>时，<code>w2</code>为空串，需要使用<code>i</code>次增删操作才能把空串转为为<code>word2[0-i]</code>。</p>
+<p>综上，状态转移函数为：</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+        dp[i][j] = \left\{
+        \begin{array}
+            & 0 && i = 0,& j = 0 \\
+             j && i = 0,& j!= 0 \\
+             i && i != 0,& j = 0 \\
+            dp[i-1][j-1] && i > 0, &j > 0,& word1[i]==word2[j] \\
+            min(dp[i-1][j-1],dp[i-1][j],dp[i][j-1])+1 && i > 0, &j > 0,& word1[i]!=word2[j]
+        \end{array}
+        \right.
+\end{eqnarray}</script>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/07/SpinLocks/" rel="prev" title="SpinLocks">
+      <i class="fa fa-chevron-left"></i> SpinLocks
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90%E4%BD%9C%E4%B8%9A-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">计算机算法设计与分析作业(动态规划)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Money-Robbing"><span class="nav-number">1.1.</span> <span class="nav-text">1 Money Robbing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-%E6%88%BF%E5%B1%8B%E5%9B%B4%E6%88%90%E4%B8%80%E5%9C%88"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">e)房屋围成一圈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Ugly-Number"><span class="nav-number">1.2.</span> <span class="nav-text">2 Ugly Number</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-1"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-1"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-1"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-1"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Largest-Divisible-Subset"><span class="nav-number">1.3.</span> <span class="nav-text">3 Largest Divisible Subset</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-2"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84%E4%B8%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B-2"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">b)最优子结构与状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-2"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">c)证明正确性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-2"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">d)时间复杂度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Target-Sum"><span class="nav-number">1.4.</span> <span class="nav-text">4 Target Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Best-Time-to-Buy-and-Sell-Stock-with-Cooldown"><span class="nav-number">1.5.</span> <span class="nav-text">5 Best Time to Buy and Sell Stock with Cooldown</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Edit-distance"><span class="nav-number">1.6.</span> <span class="nav-text">6 Edit distance</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XuKai</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XuKai</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
