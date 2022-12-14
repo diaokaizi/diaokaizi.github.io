@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Question1The given string S is represented by “x” and “.”, “x” represents a pit, “.” represents a normal road. The cost of filling k consecutive pits is k+1, please obtain the maximum normal road ( It">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlgorithmDesignAndAnalysisGreedy">
+<meta property="og:url" content="http://example.com/2022/12/14/AlgorithmDesignAndAnalysisGreedy/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="Question1The given string S is represented by “x” and “.”, “x” represents a pit, “.” represents a normal road. The cost of filling k consecutive pits is k+1, please obtain the maximum normal road ( It">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154121471.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154143306.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154157948.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154230602.png">
+<meta property="article:published_time" content="2022-12-14T07:29:00.000Z">
+<meta property="article:modified_time" content="2022-12-14T07:30:15.644Z">
+<meta property="article:author" content="XuKai">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png">
+
+<link rel="canonical" href="http://example.com/2022/12/14/AlgorithmDesignAndAnalysisGreedy/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AlgorithmDesignAndAnalysisGreedy | Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/AlgorithmDesignAndAnalysisGreedy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="XuKai">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AlgorithmDesignAndAnalysisGreedy
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-14 15:29:00 / 修改时间：15:30:15" itemprop="dateCreated datePublished" datetime="2022-12-14T15:29:00+08:00">2022-12-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Question1"><a href="#Question1" class="headerlink" title="Question1"></a>Question1</h2><p>The given string S is represented by “x” and “.”, “x” represents a pit, “.” represents a normal road. The cost of filling k consecutive pits is k+1, please obtain the maximum normal road ( It can be non-continuous. ) with budget M. </p>
+<p><strong>Input</strong>: S = “xxx…xxxx….xxxxx”, M = 11 </p>
+<p><strong>Output</strong>: 16</p>
+<h4 id="a-算法与伪代码"><a href="#a-算法与伪代码" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><ol>
+<li>统计所有的连续的坑的长度，然后按照从大到小的顺序进行排序。</li>
+<li>依次按从大到小的顺序填补这些坑，并减去对应的预算，如果预算不足则跳过，去填补更短的坑，直到剩下的预算不能填补任何一个坑，或者坑被填完。</li>
+<li>统计最终填补好的坑的总长度，加上原来正常的道路的长度，得到最终答案。2 5 6     9</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221024113211346.png" alt="image-20221024113211346"></p>
+<h4 id="b-证明正确性"><a href="#b-证明正确性" class="headerlink" title="b)证明正确性"></a>b)证明正确性</h4><p>不是最优解  比如三个坑 2 5 6     M = 9</p>
+<h2 id="Question2"><a href="#Question2" class="headerlink" title="Question2"></a>Question2</h2><p>nums is an array consisting of non-negative integers, please concatenate them in certain permutation such that they can form a smallest new integer number.</p>
+<p><strong>Input</strong>: nums = [1, 4, 13, 2, 25] </p>
+<p><strong>Output</strong>: 1132254</p>
+<h4 id="a-算法与伪代码-1"><a href="#a-算法与伪代码-1" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><p>对数组进行排序。假设<code>a</code>和<code>b</code>是数组中的两个数，那么用<code>ab</code>表示<code>a</code>和<code>b</code>拼接后的数字。同样的，用<code>ba</code>表示<code>b</code>和<code>a</code>拼接后的数字。</p>
+<ol>
+<li>如果<code>ab&lt;ba</code>那么排序后<code>a</code>应该在<code>b</code>的前面。</li>
+<li>如果<code>ab&gt;ba</code>那么排序后<code>b</code>应该在<code>a</code>的前面。</li>
+<li>如果<code>ab==ba</code>那么说明<code>a</code>和<code>b</code>可以任意排序。</li>
+</ol>
+<p>将排完序的数依次组合得到的就是最小的组合数。</p>
+<p>这里的排序使用的是选择排序，时间复杂度为$O(n^{2})$，可以使用更快的排序算法。</p>
+<p>伪代码如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154121471.png" alt="image-20221116154121471"></p>
+<h4 id="b-证明正确性-1"><a href="#b-证明正确性-1" class="headerlink" title="b)证明正确性"></a>b)证明正确性</h4><p>证明传递性：即如果有<code>AB &lt;= BA</code>和<code>BC &lt;= CB</code>，那么有<code>AC &lt;= CA</code>。</p>
+<p>用<code>a</code>表示<code>A</code>的位数，用<code>b</code>表示<code>B</code>的位数。所以根据<code>AB &lt;= BA</code>有$A <em> 10^{b} + B &lt; B </em> 10^{a} + A$，可以推导出$\frac{A}{10^{a} - 1} &lt; \frac{B}{10^{b} - 1}$。</p>
+<p>同理根据<code>BC &lt;= CB</code>有$\frac{B}{10^{b} - 1} &lt; \frac{C}{10^{c} - 1}$。</p>
+<p>所以有$\frac{A}{10^{a} - 1} &lt; \frac{C}{10^{c} - 1}$，因此可以推出<code>AC &lt;= CA</code>，传递性得证。</p>
+<p>假设按照这种比较方法对数组排序后得到的数组为<code>[a1,a2,a3,...,an]</code>，假设交换任意的<code>ai</code>和<code>aj</code>，<code>0&lt;=i&lt;j&lt;n</code>，那么数组按顺序组合后的数字都会比原数组按顺序组合的数字大，因此不存在一个比<code>[a1,a2,a3,...,an]</code>更小的一个组合顺序，证明<code>[a1,a2,a3,...,an]</code>就是最小的组合顺序。</p>
+<h2 id="3-Largest-Divisible-Subset"><a href="#3-Largest-Divisible-Subset" class="headerlink" title="3 Largest Divisible Subset"></a>3 Largest Divisible Subset</h2><p>There are n meetings, and the start time and end time of i-th meeting are si and ei. Please design a greedy algorithm to find the minimum number of meeting rooms required to arrange all meetings.</p>
+<p><strong>Input</strong>: [ [0, 20], [15, 20], [20, 23], [25, 30], [15, 25] ] </p>
+<p><strong>Output</strong>: 3</p>
+<h4 id="a-算法与伪代码-2"><a href="#a-算法与伪代码-2" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><p>将数组按照会议的开始时间进行排序，并建立一个最小堆，堆中存放的是每一个房间的结束时间。具体做法是：</p>
+<p>依次遍历数组，得到这个会议的开始时间<code>si</code>，从堆中取出堆顶元素<code>priorityQueue.top()</code>（最早结束的房间）有两种情况：</p>
+<ol>
+<li><p><code>si &gt; priorityQueue.top()</code>，说明这场会议可以安排在该房间，修改该元素为<code>ei</code>并重新放入堆中。</p>
+</li>
+<li><p><code>si &lt;= priorityQueue.top()</code>，说明这场会议不能安排在所有的房间，因此需要新建一个元素<code>ei</code>放入堆中。</p>
+</li>
+</ol>
+<p>最后的房间数就是堆的元素数量。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154143306.png" alt="image-20221116154143306"></p>
+<h4 id="b-证明正确性-2"><a href="#b-证明正确性-2" class="headerlink" title="b)证明正确性"></a>b)证明正确性</h4><ol>
+<li>当<code>si &gt; priorityQueue.top()</code>时，假设队列中存在<code>k</code>个房间的结束时间都比<code>si</code>小，那么这个会议可以安排在这<code>k</code>个房间中，并且无论该会议安排哪个房间，都不影响后续的会议安排（因为后续的会议开始时间晚，当前房间能够安排这个会议，也一定能够安排后续的会议），所以这种情况不需要新建一个会议，是一个最优解。</li>
+<li>当<code>si &lt;= priorityQueue.top()</code>时，说明没有一个房间能够满足会议要求，那么必须新建一个房间。</li>
+</ol>
+<h2 id="Question4"><a href="#Question4" class="headerlink" title="Question4"></a>Question4</h2><p>N is a non-negative integer, remove k digits from it to obtain a new number. Find the biggest possible output number.</p>
+<p><strong>Input</strong>: N= 147128, k = 3 </p>
+<p><strong>Output</strong>: 728</p>
+<h4 id="a-算法与伪代码-3"><a href="#a-算法与伪代码-3" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><p>使用单调栈进行操作，具体做法是：</p>
+<ol>
+<li>从左到右遍历数组的每一位：<ol>
+<li>如果<code>k&gt;0</code>并且栈顶元素小于当前位数，那么栈顶元素出栈，<code>k--</code>，然后重复执行这一步。</li>
+<li>当前位进栈。</li>
+</ol>
+</li>
+<li>如果<code>k&gt;0</code>，那么栈顶元素出栈，<code>k--</code>，然后重复执行这一步。</li>
+<li>最后栈中剩下的元素的组合就是最后的结果。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154157948.png" alt="image-20221116154157948"></p>
+<h4 id="b-证明正确性-3"><a href="#b-证明正确性-3" class="headerlink" title="b)证明正确性"></a>b)证明正确性</h4><p>从数中删除<code>k</code>位得到最大值，那么需要尽量删掉左边的较小的数。</p>
+<p>假设<code>N</code>的位数是<code>m</code>，的每一位为<code>[d1,d2,d3,...,dm]</code>，那么<code>N</code>删除<code>k</code>位后的位数为<code>m-k</code>。</p>
+<p>解题的思路是删除那些比右边元素小的位，例如假设<code>d1 &lt; d2</code>，如果不删除<code>d1</code>，那么以<code>d2</code>开头的<code>m-k</code>位数一定比<code>d1</code>开头的<code>m-k</code>位数大，因此<code>d1</code>必须删除，同理，如果在<code>d2</code>右边找到一个比<code>d2</code>更大的数，那么也需要把<code>d2</code>删除。</p>
+<h2 id="Question5"><a href="#Question5" class="headerlink" title="Question5"></a>Question5</h2><p>You are given an integer array nums. You are initially positioned at the array’s first index, and each element in the array represents your maximum jump length at that position. Return “yes“ if you can reach the last index, or “no“ otherwise</p>
+<p><strong>Input</strong>: nums = [2,3,1,1,4]</p>
+<p><strong>Output</strong>: “yes”</p>
+<h4 id="a-算法与伪代码-4"><a href="#a-算法与伪代码-4" class="headerlink" title="a)算法与伪代码"></a>a)算法与伪代码</h4><p>维护一个能达到的最远下标<code>max</code>，依次遍历，遍历过程中如果发现能够达到更远的距离，则更新<code>max</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/diaokaizi/image@main/image-20221116154230602.png" alt="image-20221116154230602"></p>
+<h4 id="b-证明正确性-4"><a href="#b-证明正确性-4" class="headerlink" title="b)证明正确性"></a>b)证明正确性</h4><p>由于<code>nums[i]</code>表示的是在下标<code>i</code>能选择的跳跃的最大距离是<code>nums[i]</code>，说明如果能够到达<code>i</code>，那么就能够到达区间<code>[i,i+nums[i]]</code>的任意位置，所以维护一个最远下标<code>m</code>，那么<code>m</code>之前的任意一个位置都能够到达，因此贪心的遍历这些位置来尝试增大能够到达的最远下标。</p>
+<p>如果可以到达的最远位置大于等于数组的最后一个下标，说明找到了答案，否则最后一个位置无法到达。</p>
+<h2 id="Question6"><a href="#Question6" class="headerlink" title="Question6"></a>Question6</h2><p>There is a number k and you can swap two digits at most once. Please design a greedy algorithm to find the maximum value you can get. </p>
+<p><strong>Input</strong>: k = 39748 </p>
+<p><strong>Output</strong>: 93748</p>
+<p>从后往前遍历每一位，维护最大位的下标（需要严格大于才更新，因为大数相同情况下，交换低位的大数比交换高位的大数要更大）。</p>
+<p>并且遍历的过程中在这个最大位的左边找到<strong>最左边</strong>的一个比它小的下标，记录这一对下标为可能的答案。</p>
+<p>最后得到的两个下标就是要交换的两个下标。</p>
+<h2 id="Question7"><a href="#Question7" class="headerlink" title="Question7"></a>Question7</h2><p>Given an array of integers nums, divide them to k subsets, find a division scheme to maximize the sum of the ranges (极差) (i.e., max - min) of all subsets. </p>
+<p><strong>Input</strong>: nums=[1, 2, 3, 4, 5], k = 3 </p>
+<p><strong>Output</strong>: 6 (Optimal division scheme: {1, 5}, {2, 4}, {3}, sum of ranges: 4 + 2 + 0 = 6)</p>
+<p>依次放第1大的数和第1小的数到第1组中，放第2大的数和第2小的数到第2组中……</p>
+<p>前提是满足剩下的数&gt;=剩下的组数，如果剩下的数&lt;剩下的组数，说明不能放两个数。</p>
+<p>如果每一组都放完，还有剩下的数没有放，那么这些数可以任意放，不会影响最终的结果。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/22/hashMap/" rel="prev" title="hashMap源码解读">
+      <i class="fa fa-chevron-left"></i> hashMap源码解读
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/14/AlgorithmDesignAndAnalysisIntegerProgramming/" rel="next" title="AlgorithmDesignAndAnalysisIntegerProgramming">
+      AlgorithmDesignAndAnalysisIntegerProgramming <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Question1"><span class="nav-number">1.</span> <span class="nav-text">Question1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="nav-number">1.0.2.</span> <span class="nav-text">b)证明正确性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question2"><span class="nav-number">2.</span> <span class="nav-text">Question2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">b)证明正确性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Largest-Divisible-Subset"><span class="nav-number">3.</span> <span class="nav-text">3 Largest Divisible Subset</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-2"><span class="nav-number">3.0.2.</span> <span class="nav-text">b)证明正确性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question4"><span class="nav-number">4.</span> <span class="nav-text">Question4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-3"><span class="nav-number">4.0.2.</span> <span class="nav-text">b)证明正确性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question5"><span class="nav-number">5.</span> <span class="nav-text">Question5</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%AA%E4%BB%A3%E7%A0%81-4"><span class="nav-number">5.0.1.</span> <span class="nav-text">a)算法与伪代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E8%AF%81%E6%98%8E%E6%AD%A3%E7%A1%AE%E6%80%A7-4"><span class="nav-number">5.0.2.</span> <span class="nav-text">b)证明正确性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question6"><span class="nav-number">6.</span> <span class="nav-text">Question6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question7"><span class="nav-number">7.</span> <span class="nav-text">Question7</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">XuKai</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XuKai</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
